@@ -1,0 +1,12 @@
+a and x = Rock = 1 points
+b and y = paper = 2 points
+c and z = scissors = 3 points
+
+draw = 3
+win = 6
+
+////second part 
+
+X lose 
+Y Dawr
+Z Win
