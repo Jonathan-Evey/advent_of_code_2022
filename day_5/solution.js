@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { format } = require('path');
 
 fs.readFile('./input.txt', 'utf8', (error, data) => {
 	if (error) {
