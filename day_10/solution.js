@@ -10,9 +10,11 @@ fs.readFile('input.txt', 'utf8', (error, data) => {
 	runSignals();
 	console.log(signalStrengthCycleArray);
 	getTotal();
+	formatScreenArray();
 });
 
 const instructionObjsArray = [];
+const screenDisplay = [];
 
 let registerCurrentValue = 1;
 
@@ -75,6 +77,37 @@ const runSignals = () => {
 			i > 0;
 			i--
 		) {
+			let spritePosition = currenSignalCycle;
+			if (currenSignalCycle > 40 && currenSignalCycle < 81) {
+				spritePosition = spritePosition - 40;
+			}
+			if (currenSignalCycle > 80 && currenSignalCycle < 120) {
+				spritePosition = spritePosition - 80;
+			}
+			if (currenSignalCycle > 120 && currenSignalCycle < 160) {
+				spritePosition = spritePosition - 120;
+			}
+			if (currenSignalCycle > 160 && currenSignalCycle < 200) {
+				spritePosition = spritePosition - 160;
+			}
+			if (currenSignalCycle > 200 && currenSignalCycle < 240) {
+				spritePosition = spritePosition - 200;
+			}
+			if (currenSignalCycle > 240) {
+				spritePosition = spritePosition - 240;
+			}
+
+			if (
+				between(
+					spritePosition - 1,
+					registerCurrentValue - 1,
+					registerCurrentValue + 1
+				)
+			) {
+				screenDisplay.push('#');
+			} else {
+				screenDisplay.push('.');
+			}
 			if (currenSignalCycle === 20) {
 				cycleNumber(20);
 			}
@@ -106,4 +139,24 @@ const getTotal = () => {
 		return a + b.signalStrength;
 	}, 0);
 	console.log(total);
+};
+
+const formatScreenArray = () => {
+	console.log(screenDisplay);
+	let firstRow = screenDisplay.slice(0, 40).join('');
+	let secondRow = screenDisplay.slice(40, 80).join('');
+	let thirdRow = screenDisplay.slice(80, 120).join('');
+	let fourthRow = screenDisplay.slice(120, 160).join('');
+	let fithRow = screenDisplay.slice(160, 200).join('');
+	let sixthRow = screenDisplay.slice(200, 240).join('');
+	console.log(firstRow);
+	console.log(secondRow);
+	console.log(thirdRow);
+	console.log(fourthRow);
+	console.log(fithRow);
+	console.log(sixthRow);
+};
+
+const between = (value, min, max) => {
+	return value >= min && value <= max;
 };
